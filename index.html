@@ -1,5 +1,385 @@
 <!DOCTYPE html>
-<html>
-<p>大家好！这是xan和volcanocan的账号～</p>
-<p>很高兴你来到这里～</p>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>《土豆侠》剪辑优化方案</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 基础重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* 苹果系统字体优化 */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+            line-height: 1.65;
+            color: #333;
+            background: #f8f9fa;
+            padding: 15px;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* 文档容器 - 针对iPhone优化 */
+        .document {
+            max-width: 100%;
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            margin: 0 auto;
+            padding: 25px 20px;
+        }
+        
+        /* 标题优化 */
+        h1 {
+            text-align: center;
+            font-size: 22px;
+            font-weight: 700;
+            margin: 0 0 20px 0;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eaeaea;
+            color: #1d1d1f;
+            letter-spacing: -0.2px;
+        }
+        
+        h2 {
+            font-size: 19px;
+            font-weight: 600;
+            margin: 28px 0 16px;
+            padding-left: 10px;
+            border-left: 4px solid #007aff;
+            color: #1d1d1f;
+        }
+        
+        h3 {
+            font-size: 17px;
+            font-weight: 600;
+            margin: 20px 0 12px;
+            color: #1d1d1f;
+        }
+        
+        /* 内容区块 */
+        .section {
+            margin-bottom: 28px;
+            padding-bottom: 18px;
+        }
+        
+        /* 列表优化 */
+        ul, ol {
+            margin: 12px 0 15px 22px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            padding-left: 5px;
+            position: relative;
+        }
+        
+        ul li::before {
+            content: "•";
+            color: #007aff;
+            position: absolute;
+            left: -18px;
+            top: 0;
+            font-size: 18px;
+        }
+        
+        ol {
+            counter-reset: item;
+        }
+        
+        ol li {
+            counter-increment: item;
+        }
+        
+        ol li::before {
+            content: counter(item) ".";
+            color: #007aff;
+            font-weight: 600;
+            position: absolute;
+            left: -22px;
+            top: 0;
+        }
+        
+        /* 重点元素 */
+        .highlight {
+            background: linear-gradient(to right, rgba(0, 122, 255, 0.08), rgba(0, 122, 255, 0.03));
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #007aff;
+        }
+        
+        .critical {
+            color: #ff3b30;
+            font-weight: 600;
+            position: relative;
+        }
+        
+        /* 解决方案卡片 */
+        .solution-box {
+            background: #f9f9fb;
+            padding: 16px;
+            border-radius: 12px;
+            margin: 16px 0;
+            border: 1px solid #f0f0f5;
+        }
+        
+        /* 页脚 */
+        .footer {
+            margin-top: 25px;
+            padding-top: 18px;
+            border-top: 1px solid #f0f0f5;
+            text-align: center;
+            color: #8e8e93;
+            font-size: 14px;
+        }
+        
+        /* 专业标签 */
+        .film-tag {
+            display: inline-block;
+            background: rgba(0, 122, 255, 0.1);
+            color: #007aff;
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            margin: 0 4px;
+            font-weight: 500;
+        }
+        
+        /* 情感链条可视化 */
+        .emotion-chain {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            justify-content: center;
+        }
+        
+        .chain-step {
+            text-align: center;
+            padding: 10px 15px;
+            background: #f9f9fb;
+            border-radius: 10px;
+            flex: 1;
+            position: relative;
+            font-weight: 500;
+        }
+        
+        .chain-step:not(:last-child)::after {
+            content: "→";
+            position: absolute;
+            right: -15px;
+            color: #c7c7cc;
+            font-size: 18px;
+        }
+        
+        /* 响应式优化 */
+        @media (max-width: 370px) {
+            .document {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 20px;
+            }
+            
+            h2 {
+                font-size: 18px;
+            }
+            
+            h3 {
+                font-size: 16px;
+            }
+        }
+        
+        /* iPhone 横屏优化 */
+        @media (orientation: landscape) and (max-width: 850px) {
+            body {
+                padding: 10px;
+            }
+            
+            .document {
+                max-width: 700px;
+                margin: 0 auto;
+            }
+        }
+        
+        /* 分割线优化 */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #eaeaea, transparent);
+            margin: 25px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <h1>《土豆侠》剪辑优化方案（三幕式结构重组）</h1>
+        
+        <div class="section">
+            <h2>核心诊断</h2>
+            <p>当前版本存在四大核心问题：</p>
+            <ul>
+                <li>世界观模糊</li>
+                <li>角色视点不清</li>
+                <li>叙事节奏拖沓</li>
+                <li>情绪冲击力不足</li>
+            </ul>
+            <p>具体表现：</p>
+            <ol>
+                <li>开篇吸引力缺失</li>
+                <li>中段主次角色混乱</li>
+                <li>高潮戏剧冲突未达预期</li>
+                <li>蒙太奇段落冗长（如<span class="critical">3分40秒</span>回忆段）</li>
+            </ol>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="section">
+            <h2>一、开篇：第1幕建立世界与角色</h2>
+            <h3>核心问题：吸引力不足｜设定模糊</h3>
+            
+            <h3>现状痛点：</h3>
+            <ol>
+                <li>世界观交代不清</li>
+                <li>关键场次镜头视点归属不明</li>
+                <li>主角团登场分散</li>
+                <li>路人角色表演缺乏目的性</li>
+            </ol>
+            
+            <h3>优化方案（二选一）：</h3>
+            <div class="solution-box">
+                <h3>方案A：场次合并与登场强化</h3>
+                <ol>
+                    <li>合并1000-1200场为主角团<span class="film-tag">集体登场段落</span></li>
+                    <li>确立1000场核心<span class="film-tag">POV</span>（主角/全知视角）</li>
+                    <li>设计村长<span class="film-tag">"骑蜗牛"</span>等记忆点出场方式</li>
+                </ol>
+            </div>
+            
+            <div class="solution-box">
+                <h3>方案B：动态世界观引入</h3>
+                <ol>
+                    <li>添加<span class="film-tag">二维动画序章</span>展示世界观</li>
+                    <li>以<span class="film-tag">"主角团合练神功失败"</span>作开场钩子</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="section">
+            <h2>二、发展中段：第2幕冲突升级与抉择</h2>
+            <h3>核心问题：节奏拖沓｜主次不清｜情绪断裂</h3>
+            
+            <h3>关键病灶：</h3>
+            <ol>
+                <li>狗的回忆蒙太奇<span class="critical">过长（3分40秒）</span></li>
+                <li>位置安排不当</li>
+                <li>情节链条张力不足</li>
+            </ol>
+            
+            <h3>优化方案：</h3>
+            <div class="solution-box">
+                <h3>1. 节奏与焦点修正</h3>
+                <ul>
+                    <li>配角镜头严格服务主角塑造</li>
+                    <li>压缩总时长<span class="highlight">30%</span></li>
+                    <li>狗蒙太奇：
+                        <ul>
+                            <li>时长压至<span class="highlight">90秒内</span></li>
+                            <li>后移至情绪铺垫充分段落</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="solution-box">
+                <h3>2. 情节链强化</h3>
+                <ul>
+                    <li>茄子追逐采用<span class="film-tag">高速剪辑</span></li>
+                    <li>能量源争夺突出<span class="film-tag">群体压迫感</span></li>
+                    <li><span class="film-tag">特写强调</span>土豆侠救狗抉择</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="section">
+            <h2>三、高潮结局：第3幕终极对决与情感升华</h2>
+            <h3>核心问题：情感冲击薄弱｜反派动机模糊</h3>
+            
+            <h3>致命缺陷：</h3>
+            <p>原设定<span class="critical">"小狗自爆"</span>削弱情感张力</p>
+            
+            <h3>优化方案：</h3>
+            <ol>
+                <li>取消小狗自爆</li>
+                <li>新情感链条构建：</li>
+            </ol>
+            
+            <div class="emotion-chain">
+                <div class="chain-step">反派夺能量源</div>
+                <div class="chain-step">小狗挡刀牺牲</div>
+                <div class="chain-step">土豆侠爆发</div>
+            </div>
+            
+            <ul>
+                <li>清晰展现能量源剥离过程</li>
+                <li>小狗牺牲镜头衔接土豆侠面部特写</li>
+            </ul>
+            
+            <h3 style="margin-top: 20px;">蒙太奇处理方案：</h3>
+            <div class="solution-box">
+                <h3>A方案：融合剪辑</h3>
+                <ul>
+                    <li>反派前史 + 小狗回忆</li>
+                    <li><span class="film-tag">交叉剪辑</span>强化关联</li>
+                </ul>
+            </div>
+            
+            <div class="solution-box">
+                <h3>B方案：精简删除</h3>
+                <ul>
+                    <li>删除独立反派前史段落</li>
+                    <li><span class="film-tag">聚焦核心冲突</span></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>方案核心目标</h2>
+            <ul>
+                <li><strong>开篇：</strong>5分钟内建立世界观与角色认知</li>
+                <li><strong>中段：</strong>蒙太奇时长控制在<span class="highlight">90秒内</span></li>
+                <li><strong>高潮：</strong>通过新情感链条实现强烈冲击</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p><i class="fas fa-film"></i> 影视剪辑专业方案 | 基于好莱坞三幕式叙事结构</p>
+            <p style="margin-top: 5px;">生成时间：2025年6月24日</p>
+        </div>
+    </div>
+    
+    <script>
+        // 针对iOS设备的额外优化
+        if (navigator.platform.match(/iPhone|iPod|iPad/)) {
+            document.documentElement.style.setProperty('--ios-safe-area', 'env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)');
+            
+            // 防止缩放
+            document.addEventListener('gesturestart', function (e) {
+                e.preventDefault();
+            });
+        }
+    </script>
+</body>
 </html>
